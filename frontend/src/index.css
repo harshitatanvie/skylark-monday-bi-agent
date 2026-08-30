@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans antialiased;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Markdown styling inside AI messages */
+.prose-dark h1 {
+  @apply text-xl font-bold text-slate-100 mb-3 pb-2 border-b border-slate-800;
+}
+.prose-dark h2 {
+  @apply text-lg font-semibold text-slate-100 mt-4 mb-2;
+}
+.prose-dark h3 {
+  @apply text-base font-semibold text-cyan-400 mt-3 mb-2 flex items-center gap-2;
+}
+.prose-dark p {
+  @apply text-slate-300 text-sm leading-relaxed mb-3;
+}
+.prose-dark ul {
+  @apply list-disc list-inside text-slate-300 text-sm mb-3 space-y-1 pl-1;
+}
+.prose-dark ol {
+  @apply list-decimal list-inside text-slate-300 text-sm mb-3 space-y-1 pl-1;
+}
+.prose-dark li {
+  @apply text-slate-300 text-sm;
+}
+.prose-dark strong {
+  @apply text-slate-100 font-semibold;
+}
+.prose-dark code {
+  @apply bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded text-xs font-mono;
+}
+.prose-dark blockquote {
+  @apply border-l-4 border-cyan-500 pl-3 italic text-slate-400 my-2;
+}
+.prose-dark hr {
+  @apply border-slate-800 my-4;
+}
+
+/* Glassmorphism effects */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
