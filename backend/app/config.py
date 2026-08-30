@@ -25,14 +25,15 @@ class Settings(BaseModel):
 
     @property
     def DEMO_MODE(self) -> bool:
+        # If Monday credentials are not configured, DEMO_MODE is ALWAYS True out-of-the-box
+        if not self.has_valid_monday_creds:
+            return True
         env_demo = os.getenv("DEMO_MODE", "").lower()
         if env_demo in ("true", "1", "yes"):
             return True
         elif env_demo in ("false", "0", "no"):
             return False
-        # If valid Monday credentials are present, default to Live Mode (False).
-        # Otherwise, default to Demo Mode (True).
-        return not self.has_valid_monday_creds
+        return False
 
     CORS_ORIGINS: list[str] = [
         origin.strip() for origin in os.getenv(

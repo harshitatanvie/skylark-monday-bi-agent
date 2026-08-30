@@ -43,9 +43,9 @@ export const MessageItem: React.FC<Props> = ({ message, onSendPrompt, onOpenData
           {!isAI && <p className="text-sm whitespace-pre-wrap">{message.text}</p>}
 
           {/* AI Markdown Content */}
-          {isAI && data?.answer_markdown && (
+          {isAI && (
             <div className="prose-dark font-sans text-sm">
-              <ReactMarkdown>{data.answer_markdown}</ReactMarkdown>
+              <ReactMarkdown>{data?.answer_markdown || message.text}</ReactMarkdown>
             </div>
           )}
 

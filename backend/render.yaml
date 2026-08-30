@@ -16,7 +16,5 @@ services:
         sync: false
       - key: OPENAI_MODEL
         value: gpt-4o-mini
-      - key: DEMO_MODE
-        value: "false"
       - key: CORS_ORIGINS
         sync: false
