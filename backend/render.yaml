@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: skylark-monday-bi-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONDAY_API_TOKEN
+        sync: false
+      - key: MONDAY_WORK_ORDERS_BOARD_ID
+        sync: false
+      - key: MONDAY_DEALS_BOARD_ID
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: DEMO_MODE
+        value: "false"
+      - key: CORS_ORIGINS
+        sync: false
