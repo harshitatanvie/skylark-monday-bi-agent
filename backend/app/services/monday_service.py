@@ -129,7 +129,7 @@ class MondayService:
         return all_raw_items
 
     def get_deals_raw(self, force_demo: bool = False) -> List[Dict[str, Any]]:
-        if force_demo or (settings.DEMO_MODE and not settings.has_valid_monday_creds):
+        if force_demo or settings.DEMO_MODE:
             logger.info("Using Demo Mode mock dataset for Deals board.")
             return MOCK_DEALS_RAW
             
@@ -138,14 +138,11 @@ class MondayService:
             logger.info(f"Fetched {len(items)} deals directly from Monday.com board ID {self.deals_board_id}")
             return items
         except Exception as e:
-            if settings.DEMO_MODE:
-                logger.warning(f"Failed to fetch live Deals from Monday API ({str(e)}). Using Demo Mode mock data.")
-                return MOCK_DEALS_RAW
             logger.error(f"Failed to fetch live Deals from Monday API: {str(e)}")
             raise Exception(f"Unable to retrieve the Deals board from Monday.com: {str(e)}")
 
     def get_work_orders_raw(self, force_demo: bool = False) -> List[Dict[str, Any]]:
-        if force_demo or (settings.DEMO_MODE and not settings.has_valid_monday_creds):
+        if force_demo or settings.DEMO_MODE:
             logger.info("Using Demo Mode mock dataset for Work Orders board.")
             return MOCK_WORK_ORDERS_RAW
             
@@ -154,9 +151,6 @@ class MondayService:
             logger.info(f"Fetched {len(items)} work orders directly from Monday.com board ID {self.work_orders_board_id}")
             return items
         except Exception as e:
-            if settings.DEMO_MODE:
-                logger.warning(f"Failed to fetch live Work Orders from Monday API ({str(e)}). Using Demo Mode mock data.")
-                return MOCK_WORK_ORDERS_RAW
             logger.error(f"Failed to fetch live Work Orders from Monday API: {str(e)}")
             raise Exception(f"Unable to retrieve the Work Orders board from Monday.com: {str(e)}")
 
